@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+  <title>Digital Counter</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,viewport-fit=cover,minimal-ui" />
+  <meta name="description" content="The fastest way to count. No downloads. No fuss. Begin counting now. Remembers your counting even after you leave; simply return to pick up where you left.">
+  <meta name="keywords" content="counter, tasbih, tasbeeh, digital" />
+  <meta name="google" content="notranslate" />
+
+  <!-- Android  -->
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-title" content="Digital Counter" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff" />
+
+  <!-- Windows  -->
+  <meta name="msapplication-navbutton-color" content="#ffffff" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage" content="img/android-icon-192x192.png" />
+  <meta name="msapplication-config" content="browserconfig.xml" />
+
+  <!-- Pinned Sites  -->
+  <meta name="application-name" content="Digital Counter" />
+  <meta name="msapplication-tooltip" content="Digital Counter" />
+  <meta name="msapplication-starturl" content="/DigitalCounter/" />
+
+  <!-- Tap highlighting  -->
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <!-- UC Mobile Browser  -->
+  <meta name="full-screen" content="yes" />
+  <meta name="browsermode" content="application" />
+
+  <!-- Layout mode -->
+  <meta name="layoutmode" content="fitscreen/standard" />
+
+  <!-- imagemode - show image even in text only mode  -->
+  <meta name="imagemode" content="force" />
+
+  <!-- Orientation  -->
+  <meta name="screen-orientation" content="portrait" />
+
+  <!-- Social media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nullifye.github.io/DigitalCounter/" />
+  <meta property="og:title" content="DigitalCounter" />
+  <meta property="og:image" content="https://nullifye.github.io/DigitalCounter/img/preview.jpg" />
+  <meta property="og:site_name" content="DigitalCounter" />
+  <meta property="og:description" content="The fastest way to count. No downloads. No fuss. Begin counting now. Remembers your counting even after you leave; simply return to pick up where you left." />
+
+  <meta name="twitter:creator" content="@nulogic" />
+  <meta name="twitter:url" content="https://nullifye.github.io/DigitalCounter/" />
+  <meta name="twitter:title" content="DigitalCounter" />
+  <meta name="twitter:image" content="https://nullifye.github.io/DigitalCounter/img/preview.jpg" />
+  <meta name="twitter:site" content="@nulogic" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="The fastest way to count. No downloads. No fuss. Begin counting now. Remembers your counting even after you leave; simply return to pick up where you left." />
+
+	<link rel="manifest" href="manifest.json">
+
+	<link rel="icon" type="image/png" sizes="192x192" href="img/android-launchericon-192x192.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="img/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="512x512" href="img/android-icon-512x512.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="img/android-icon-512x512.png">
+	<link rel="icon" type="image/png" sizes="144x144" href="img/android-icon-144x144.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="144x144" href="img/android-icon-144x144.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/android-icon-96x96.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="96x96" href="img/android-icon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="img/android-icon-72x72.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="72x72" href="img/android-icon-72x72.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="img/android-icon-48x48.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="48x48" href="img/android-icon-48x48.png">
+
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link href="app.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="clicked-animations"></div>
+
+  <span id="reset" class="material-icons-round">
+    restart_alt
+  </span>
+  <span id="mode" class="material-icons-round">
+    dark_mode
+  </span>
+  <span id="records" class="material-icons-round">
+    history
+  </span>
+  <span id="trophy" class="material-icons-round">
+    emoji_events
+  </span>
+  <span id="minus" class="material-icons-round">
+    exposure_neg_1
+  </span>
+  <span id="save" class="material-icons-round">
+    save_as
+  </span>
+
+  <span class="counter">00000</span>
+
+  <span class="movinblock">
+    <span id="move" class="material-icons-round">
+      zoom_out_map
+    </span>
+
+    <button id="keypad">
+      <span class="material-icons-round">
+        touch_app
+      </span>
+    </button>
+  </span>
+
+  <span class="modal saveas">
+    <span>
+      Save As...
+      <span id="btnsaveasclose" class="material-icons-round">
+        cancel
+      </span>
+    </span>
+
+    <input type="text" name="saveas" id="saveas">
+
+    <span id="btnsaveas">save</span>
+  </span>
+
+  <span class="modal records">
+    <span>
+      Recents
+    </span>
+
+    <div class="recordstable">
+      <span>
+        <span class="colcounter">92,056</span>
+        <span class="colsname">
+          الله أكبر
+          <span>Thu, 23 Mac 2023</span>
+        </span>
+        <span class="colsactions material-icons-round">
+          delete_forever
+        </span>
+      </span>
+    </div>
+
+    <span id="btnrecordsclose">close</span>
+  </span>
+
+  <span class="modal trophy">
+    <span>
+      Badges
+    </span>
+
+    <div class="trophies">
+      <span>
+        <span class="material-icons-round">
+          military_tech
+        </span>
+        <span class="caption">First 33</span>
+      </span>
+    </div>
+
+    <span id="btntrophyclose">close</span>
+  </span>
+
+  <script src="app.js" type="text/javascript"></script>
+</body>
+</html>

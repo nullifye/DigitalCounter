@@ -1,0 +1,365 @@
+body.dark {
+  background-color: #333;
+  color: #fff;
+}
+body.dark .counter {
+  color: #fff;
+}
+body.dark button#keypad::before {
+  box-shadow: 0 0 0 2px #b18597
+}
+body.dark .modal.saveas::before {
+  box-shadow: 0 0 0 2px #b18597
+}
+body.dark .modal.records::before {
+  box-shadow: 0 0 0 2px #b18597
+}
+body.dark .modal.trophy::before {
+  box-shadow: 0 0 0 2px #b18597
+}
+
+
+body {
+  background-color: #fff;
+  color: #000;
+  overflow: hidden;
+  padding: 20px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.counter {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 23vw;
+  letter-spacing: 0.5rem;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+  color: #9b5a6b;
+  filter: opacity(0.5);
+  padding-top: 10vh;
+}
+
+.counter:has(span) {
+  filter: opacity(1);
+}
+
+.counter span[data-num='0'] {
+  filter: opacity(0.5);
+}
+
+.counter span:not([data-num='0']) {
+  filter: opacity(1);
+}
+
+.counter span:not([data-num='0']) + span,
+.counter span:not([data-num='0']) + span + span,
+.counter span:not([data-num='0']) + span + span + span,
+.counter span:not([data-num='0']) + span + span + span + span {
+  filter: opacity(1);
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+
+  width: 34vw;
+  height: 16vh;  
+  max-width: 150px;
+}
+
+button#keypad {
+  font-weight: 600;
+  color: #382b22;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button#keypad::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button#keypad:hover {
+  background: #ffe9e9;
+  transform: translate(0, 0.25em);
+}
+
+button#keypad:hover::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+button.keypad:active {
+  background: #ffe9e9;
+  transform: translate(0em, 0.75em); 
+}
+
+button#keypad:active::before {
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+  transform: translate3d(0, 0, -1em);
+}
+
+button#keypad:focus {
+  outline: none;
+}
+
+button span {
+  color: #9b5a6b;
+  font-size: 2rem !important;
+  cursor: pointer;
+}
+
+#reset, #minus, #mode, #trophy, #records, #save {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#minus {
+  float: right;
+}
+
+#save {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+#mode, #trophy, #records {
+  margin-left: 1em;
+}
+
+.movinblock {
+  position: absolute;
+  left: 8vw;
+  bottom: 10vh;
+}
+
+#move {
+  vertical-align: top;
+  padding-top: 10px;
+  cursor: grab;
+}
+
+.clicked-animation {
+  width: max-content;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+
+.modal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  font-weight: 600;
+  color: #382b22;
+  padding: 1.25em 2em;
+  background: #fff0f0;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1); 
+  font-family: 'Share Tech Mono', sans-serif;
+}
+
+.modal::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  z-index: -1;
+}
+
+.modal.saveas {
+  display: none;
+  width: 67vw;
+  max-width: 600px;
+  min-height: 100px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.modal.saveas #btnsaveas {
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.modal.saveas #btnsaveasclose {
+  position: absolute;
+  right: 0.2em;
+  top: 0.2em;
+  color: #9b5a6b;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal.saveas input {
+  margin-top: 7px;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  padding: 10px 8px;
+  font-family: inherit;
+  font-size: 1.1em;
+}
+
+.modal.records {
+  display: none;
+  width: 75vw;
+  max-width: 600px;
+  min-height: 400px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.modal.records #btnrecordsclose {
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.modal.records .recordstable {
+  min-height: 328px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.modal.records .recordstable span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal.records .recordstable > span > span:nth-child(1) {
+  flex: 3;
+  font-size: 1.1em;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.records .recordstable > span > span:nth-child(2) {
+  flex: 7;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.modal.records .recordstable > span > span:nth-child(2) > span {
+  font-size: 0.8em;
+  opacity: 0.8;
+  padding-top: 2px;
+}
+
+.modal.records .recordstable > span > span:nth-child(3) {
+  flex: 1;
+  justify-content: end;
+  align-items: center;
+  color: #9b5a6b;
+  cursor: pointer;
+}
+
+.modal.trophy {
+  display: none;
+  width: 75vw;
+  max-width: 560px;
+  min-height: 400px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.modal.trophy #btntrophyclose {
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.modal.trophy .trophies {
+  min-height: 328px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
+}
+
+.modal.trophy .trophies > span {
+  flex-grow: 1;
+  width: 33%;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  filter: blur(5px);
+}
+
+.modal.trophy .trophies > span.unlocked {
+  filter: blur(0px);
+}
+
+.modal.trophy .trophies span span:nth-child(1) {
+  font-size: 3.5em;
+}
+
+.modal.trophy .trophies span span.caption {
+  flex: auto;
+  filter: blur(5px);
+}
+
+.modal.trophy .trophies span.unlocked span.caption {
+  filter: blur(0px);
+}
