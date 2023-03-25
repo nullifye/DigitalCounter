@@ -6,8 +6,8 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/DigitalCounter/",
-  "id": "/DigitalCounter/?utm_source=standalone&utm_medium=pwa",
-  "start_url": "/DigitalCounter/?utm_source=standalone&utm_medium=pwa",
+  "id": "/DigitalCounter/index.html?utm_source=standalone&utm_medium=pwa",
+  "start_url": "/DigitalCounter/index.html?utm_source=standalone&utm_medium=pwa",
   "icons": [{
     "src": "img/android-icon-192x192.png",
     "sizes": "192x192",
