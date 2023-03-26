@@ -3,8 +3,8 @@ var revision = "00001";
 var cacheName = "digitalcounter";
 var filesToCache = [
   "index.html",
-  "app.js",
-  "app.css",
+  "js/app.js",
+  "css/app.css",
   "img/android-icon-48x48.png",
   "img/android-icon-72x72.png",
   "img/android-icon-96x96.png",
