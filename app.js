@@ -179,6 +179,7 @@ function updateRecordIfLoaded(ctr) {
 function save() {
   const saveas = document.querySelector(".saveas");
 
+  saveas.querySelector('#saveas').value = "";
   saveas.style.display = "flex";
 }
 
@@ -316,29 +317,31 @@ document.querySelector("#keypad").addEventListener('click', function(e) {
 });
 
 document.querySelector("#btnsaveas").addEventListener('click', function(e) {
-  document.querySelector(".saveas").style.display = "none";
+  const el = document.querySelector("#saveas");
 
-  const id    = parseInt(new Date().getTime()/1000);
-  const el    = document.querySelector("#saveas");
-  const cn    = document.querySelector('.counter')
-  const data  = {
-    epoch: id,
-    title: el.value,
-    count: parseInt(cn.innerText)
-  };
+  if (el.value.trim() != '') {
+    document.querySelector(".saveas").style.display = "none";
 
-  let rec = JSON.parse(localStorage.getItem('records'));
+    const id = parseInt(new Date().getTime()/1000);
+    const cn = document.querySelector('.counter');
 
-  if (rec) {
-    rec.push(data);
+    const data = {
+      epoch: id,
+      title: el.value,
+      count: parseInt(cn.innerText)
+    };
+
+    let rec = JSON.parse(localStorage.getItem('records'));
+
+    if (rec)
+      rec.push(data);
+    else
+      rec = [data];
+
+    localStorage.setItem('records', JSON.stringify(rec));
+
+    loadRecord(id);
   }
-  else {
-    rec = [data];
-  }
-
-  localStorage.setItem('records', JSON.stringify(rec));
-
-  loadRecord(id);
 });
 
 document.querySelector("#btnsaveasclose").addEventListener('click', function(e) {
