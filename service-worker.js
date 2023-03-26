@@ -19,7 +19,7 @@ var filesToCache = [
   "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 ];
 
-self.addEventListener('install', function(e) {
+self.addEventListener("install", function(e) {
   self.skipWaiting();
 
   e.waitUntil(
@@ -29,12 +29,12 @@ self.addEventListener('install', function(e) {
   );
 });
 
-self.addEventListener('activate', function(e) {
+self.addEventListener("activate", function(e) {
   return self.clients.claim();
 
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request);

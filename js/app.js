@@ -25,7 +25,7 @@ function plusone() {
 }
 
 function formattedDisplayNum(num) {
-  let formattedNum = num.toString().padStart(5, '0');
+  let formattedNum = num.toString().padStart(5, "0");
 
   formattedNum = formattedNum.split("").map(function(el) {
     return "<span data-num='" + el + "'>" + el +"</span>";
@@ -42,7 +42,7 @@ function countup() {
           clickSound.play();
   }
 
-  const ctr = document.querySelector('.counter');
+  const ctr = document.querySelector(".counter");
     let num = parseInt(ctr.innerText);
         num++;
 
@@ -63,7 +63,7 @@ function countup() {
 }
 
 function minus() {
-  const ctr = document.querySelector('.counter');
+  const ctr = document.querySelector(".counter");
     let num = parseInt(ctr.innerText);
 
   if (num > 0)
@@ -75,9 +75,9 @@ function minus() {
 }
 
 function reset() {
-  const ctr = document.querySelector('.counter');
+  const ctr = document.querySelector(".counter");
 
-  ctr.innerHTML = '00000';
+  ctr.innerHTML = "00000";
 
   hold = null;
 
@@ -88,7 +88,7 @@ function records() {
   const records      = document.querySelector(".records");
   const recordstable = document.querySelector(".recordstable");
 
-  let rec = JSON.parse(localStorage.getItem('records'));
+  let rec = JSON.parse(localStorage.getItem("records"));
 
   recordstable.innerHTML = "";
 
@@ -101,27 +101,27 @@ function records() {
       let d = new Date(0);
       d.setUTCSeconds(rec[i].epoch);
 
-      let spo = document.createElement('span');
-          spo.id = '_' + rec[i].epoch;
-      let sp1 = document.createElement('span');
-          sp1.classList.add('colcounter');
-          sp1.innerText = rec[i].count.toLocaleString('en');
-      let sp2 = document.createElement('span');
-          sp2.classList.add('colsname');
+      let spo = document.createElement("span");
+          spo.id = "_" + rec[i].epoch;
+      let sp1 = document.createElement("span");
+          sp1.classList.add("colcounter");
+          sp1.innerText = rec[i].count.toLocaleString("en");
+      let sp2 = document.createElement("span");
+          sp2.classList.add("colsname");
           sp2.dataset.key = rec[i].epoch;
           sp2.innerText = rec[i].title;
-      let sp3 = document.createElement('span');
+      let sp3 = document.createElement("span");
           sp3.innerText = d.toLocaleString();
-      let sp4 = document.createElement('span');
-          sp4.classList.add('colsactions', 'material-icons-round');
+      let sp4 = document.createElement("span");
+          sp4.classList.add("colsactions", "material-icons-round");
           sp4.dataset.key = rec[i].epoch;
-          sp4.innerText = 'delete_forever';
+          sp4.innerText = "delete_forever";
 
-      sp2.addEventListener('click', function() {
+      sp2.addEventListener("click", function() {
         loadRecord(this.dataset.key);
       });
 
-      sp4.addEventListener('click', function() {
+      sp4.addEventListener("click", function() {
         removeRecord(this.dataset.key);
       });
 
@@ -138,7 +138,7 @@ function records() {
 }
 
 function loadRecord(id) {
-  const rec = JSON.parse(localStorage.getItem('records'));
+  const rec = JSON.parse(localStorage.getItem("records"));
   const idx = rec.findIndex((item) => item.epoch == id);
 
   hold = {
@@ -147,7 +147,7 @@ function loadRecord(id) {
     ctr: rec[idx].count
   };
 
-  const ctr = document.querySelector('.counter');
+  const ctr = document.querySelector(".counter");
 
   ctr.innerHTML = formattedDisplayNum(hold.ctr);
 
@@ -160,26 +160,26 @@ function removeRecord(id) {
   const rem = document.querySelector("#_" + id);
         rem.remove();
 
-  let   rec = JSON.parse(localStorage.getItem('records'));
+  let   rec = JSON.parse(localStorage.getItem("records"));
         rec = rec.filter((item) => item.epoch != id);
 
-  localStorage.setItem('records', JSON.stringify(rec));
+  localStorage.setItem("records", JSON.stringify(rec));
 }
 
 function updateRecordIfLoaded(ctr) {
   if (hold) {
-    let rec = JSON.parse(localStorage.getItem('records'));
-        rec[hold.idx].epoch = parseInt(new Date().getTime()/1000);
+    let rec = JSON.parse(localStorage.getItem("records"));
+        rec[hold.idx].epoch = parseInt(new Date().getTime() / 1000);
         rec[hold.idx].count = ctr;
 
-    localStorage.setItem('records', JSON.stringify(rec));
+    localStorage.setItem("records", JSON.stringify(rec));
   }
 }
 
 function save() {
   const saveas = document.querySelector(".saveas");
 
-  saveas.querySelector('#saveas').value = "";
+  saveas.querySelector("#saveas").value = "";
   saveas.style.display = "flex";
 }
 
@@ -208,17 +208,17 @@ function trophy() {
 }
 
 function changemode() {
-  if (document.body.classList.contains('dark')) {
-    document.body.classList.remove('dark');
-    document.querySelector('#mode').innerHTML = 'dark_mode';
+  if (document.body.classList.contains("dark")) {
+    document.body.classList.remove("dark");
+    document.querySelector("#mode").innerHTML = "dark_mode";
 
-    localStorage.setItem('isDarkMode', false);
+    localStorage.setItem("isDarkMode", false);
   }
   else {
-    document.body.classList.add('dark');
-    document.querySelector('#mode').innerHTML = 'light_mode';
+    document.body.classList.add("dark");
+    document.querySelector("#mode").innerHTML = "light_mode";
 
-    localStorage.setItem('isDarkMode', true);
+    localStorage.setItem("isDarkMode", true);
   }
 }
 
@@ -228,102 +228,102 @@ let       isDown = false;
 let       offset = [0,0];
 
 //desktop
-triggerEl.addEventListener('mousedown', function(e) {
+triggerEl.addEventListener("mousedown", function(e) {
   isDown = true;
   offset = [
     divOverlay.offsetLeft - e.clientX,
     divOverlay.offsetTop - e.clientY
   ];
 
-  triggerEl.style.cursor = 'grabbing';
+  triggerEl.style.cursor = "grabbing";
 }, true);
 
-document.addEventListener('mouseup', function() {
+document.addEventListener("mouseup", function() {
   isDown = false;
-  triggerEl.style.cursor = 'grab';
+  triggerEl.style.cursor = "grab";
 }, true);
 
-document.addEventListener('mousemove', function(e) {
+document.addEventListener("mousemove", function(e) {
   if (isDown) {
     e.preventDefault();
-    divOverlay.style.left    = (e.clientX + offset[0]) + 'px';
-    divOverlay.style.top     = (e.clientY + offset[1]) + 'px';
-    divOverlay.style.bottom  = (e.clientY + offset[1]) + 'px';
+    divOverlay.style.left    = (e.clientX + offset[0]) + "px";
+    divOverlay.style.top     = (e.clientY + offset[1]) + "px";
+    divOverlay.style.bottom  = (e.clientY + offset[1]) + "px";
   }
 }, true);
 
 //mobile
-triggerEl.addEventListener('touchstart', function(e) {
+triggerEl.addEventListener("touchstart", function(e) {
   isDown = true;
   offset = [
     divOverlay.offsetLeft - e.touches[0].clientX,
     divOverlay.offsetTop - e.touches[0].clientY
   ];
 
-  triggerEl.style.cursor = 'grabbing';
+  triggerEl.style.cursor = "grabbing";
 });
 
-document.addEventListener('touchend', function() {
+document.addEventListener("touchend", function() {
   isDown = false;
-  triggerEl.style.cursor = 'grab';
+  triggerEl.style.cursor = "grab";
 });
 
-document.addEventListener('touchmove', function(e) {
+document.addEventListener("touchmove", function(e) {
   if (isDown) {
-    divOverlay.style.left    = (e.touches[0].clientX + offset[0]) + 'px';
-    divOverlay.style.top     = (e.touches[0].clientY + offset[1]) + 'px';
-    divOverlay.style.bottom  = (e.touches[0].clientY + offset[1]) + 'px';
+    divOverlay.style.left    = (e.touches[0].clientX + offset[0]) + "px";
+    divOverlay.style.top     = (e.touches[0].clientY + offset[1]) + "px";
+    divOverlay.style.bottom  = (e.touches[0].clientY + offset[1]) + "px";
   }
 });
 
 
-document.querySelector("#reset").addEventListener('click', function(e) {
+document.querySelector("#reset").addEventListener("click", function(e) {
   reset();
 });
 
-document.querySelector("#mode").addEventListener('click', function(e) {
+document.querySelector("#mode").addEventListener("click", function(e) {
   changemode();
 });
 
-document.querySelector("#records").addEventListener('click', function(e) {
+document.querySelector("#records").addEventListener("click", function(e) {
   records();
 });
 
-document.querySelector("#trophy").addEventListener('click', function(e) {
+document.querySelector("#trophy").addEventListener("click", function(e) {
   trophy();
 });
 
-document.querySelector("#minus").addEventListener('click', function(e) {
+document.querySelector("#minus").addEventListener("click", function(e) {
   minus();
 });
 
-document.querySelector("#sound").addEventListener('click', function(e) {
+document.querySelector("#sound").addEventListener("click", function(e) {
   isMute = !isMute;
 
-  localStorage.setItem('isMute', isMute);
+  localStorage.setItem("isMute", isMute);
 
   if (isMute)
-    document.querySelector('#sound').innerHTML = 'volume_off';
+    document.querySelector("#sound").innerHTML = "volume_off";
   else
-    document.querySelector('#sound').innerHTML = 'volume_up';
+    document.querySelector("#sound").innerHTML = "volume_up";
 });
 
-document.querySelector("#save").addEventListener('click', function(e) {
+document.querySelector("#save").addEventListener("click", function(e) {
   save();
 });
 
-document.querySelector("#keypad").addEventListener('click', function(e) {
+document.querySelector("#keypad").addEventListener("click", function(e) {
   countup();
 });
 
-document.querySelector("#btnsaveas").addEventListener('click', function(e) {
+document.querySelector("#btnsaveas").addEventListener("click", function(e) {
   const el = document.querySelector("#saveas");
 
-  if (el.value.trim() != '') {
+  if (el.value.trim() != "") {
     document.querySelector(".saveas").style.display = "none";
 
-    const id = parseInt(new Date().getTime()/1000);
-    const cn = document.querySelector('.counter');
+    const id = parseInt(new Date().getTime() / 1000);
+    const cn = document.querySelector(".counter");
 
     const data = {
       epoch: id,
@@ -331,72 +331,72 @@ document.querySelector("#btnsaveas").addEventListener('click', function(e) {
       count: parseInt(cn.innerText)
     };
 
-    let rec = JSON.parse(localStorage.getItem('records'));
+    let rec = JSON.parse(localStorage.getItem("records"));
 
     if (rec)
       rec.push(data);
     else
       rec = [data];
 
-    localStorage.setItem('records', JSON.stringify(rec));
+    localStorage.setItem("records", JSON.stringify(rec));
 
     loadRecord(id);
   }
 });
 
-document.querySelector("#btnsaveasclose").addEventListener('click', function(e) {
+document.querySelector("#btnsaveasclose").addEventListener("click", function(e) {
   document.querySelector(".saveas").style.display = "none";
 });
 
-document.querySelector("#btnrecordsclose").addEventListener('click', function(e) {
+document.querySelector("#btnrecordsclose").addEventListener("click", function(e) {
   document.querySelector(".records").style.display = "none";
 });
 
-document.querySelector("#btntrophyclose").addEventListener('click', function(e) {
+document.querySelector("#btntrophyclose").addEventListener("click", function(e) {
   document.querySelector(".trophy").style.display = "none";
 });
 
 
-let isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+let isDarkMode = JSON.parse(localStorage.getItem("isDarkMode"));
 let hold = null;
 
 if (isDarkMode) {
-  document.body.classList.add('dark');
-  document.querySelector('#mode').innerHTML = 'light_mode';
+  document.body.classList.add("dark");
+  document.querySelector("#mode").innerHTML = "light_mode";
 }
 
-let isMute = JSON.parse(localStorage.getItem('isMute'));
+let isMute = JSON.parse(localStorage.getItem("isMute"));
 
 if (isMute) {
-  document.querySelector('#sound').innerHTML = 'volume_off';
+  document.querySelector("#sound").innerHTML = "volume_off";
 }
 
 const badges = [
-  {i: 'military_tech', t: 'First 33',       s: '_badge1'},
-  {i: 'military_tech', t: 'First 1,000',    s: '_badge2'},
-  {i: 'military_tech', t: '1,000 in a Day', s: '_badge3'},
-  {i: 'military_tech', t: '3-day Streak',   s: '_badge4'},
-  {i: 'military_tech', t: '7-day Streak',   s: '_badge5'},
-  {i: 'military_tech', t: '30-day Streak',  s: '_badge6'},
-  {i: 'military_tech', t: '100 Total Days', s: '_badge7'},
-  {i: 'military_tech', t: '10,000',         s: '_badge8'}
+  {i: "military_tech", t: "First 33",       s: "_badge1"},
+  {i: "military_tech", t: "First 1,000",    s: "_badge2"},
+  {i: "military_tech", t: "1,000 in a Day", s: "_badge3"},
+  {i: "military_tech", t: "3-day Streak",   s: "_badge4"},
+  {i: "military_tech", t: "7-day Streak",   s: "_badge5"},
+  {i: "military_tech", t: "30-day Streak",  s: "_badge6"},
+  {i: "military_tech", t: "100 Total Days", s: "_badge7"},
+  {i: "military_tech", t: "10,000",         s: "_badge8"}
 ];
 
 function lastAccessTime() {
-  localStorage.setItem('lastAccessTime', parseInt(new Date().getTime()/1000));
+  localStorage.setItem("lastAccessTime", parseInt(new Date().getTime() / 1000));
 }
 
 function analytics() {
-  const        currentTime = parseInt(new Date().getTime()/1000);
-  const lastTimeFirstClick = parseInt(localStorage.getItem('lastTimeFirstClick'));
+  const        currentTime = parseInt(new Date().getTime() / 1000);
+  const lastTimeFirstClick = parseInt(localStorage.getItem("lastTimeFirstClick"));
 
-  const todayClicks = (parseInt(localStorage.getItem('todayClicks')) || 0) + 1;
-  const totalClicks = (parseInt(localStorage.getItem('totalClicks')) || 0) + 1;
-  let       numDays = (parseInt(localStorage.getItem('numDays')) || 0);
-  let    streakDays = (parseInt(localStorage.getItem('streakDays')) || 1);
+  const todayClicks = (parseInt(localStorage.getItem("todayClicks")) || 0) + 1;
+  const totalClicks = (parseInt(localStorage.getItem("totalClicks")) || 0) + 1;
+  let       numDays = (parseInt(localStorage.getItem("numDays")) || 0);
+  let    streakDays = (parseInt(localStorage.getItem("streakDays")) || 1);
 
   if (isNaN(lastTimeFirstClick)) {
-    localStorage.setItem('lastTimeFirstClick', currentTime);
+    localStorage.setItem("lastTimeFirstClick", currentTime);
   }
 
   const date1 = new Date(lastTimeFirstClick * 1000);
@@ -407,51 +407,51 @@ function analytics() {
 
   if (diffDays === 0 && timeDiff < (24 * 60 * 60 * 1000)) {
     diffDays = 0;
-    localStorage.setItem('todayClicks', todayClicks);
+    localStorage.setItem("todayClicks", todayClicks);
   }
   else {
-    localStorage.setItem('lastTimeFirstClick', currentTime);
-    localStorage.setItem('todayClicks', 1);
-    localStorage.setItem('numDays', ++numDays);
+    localStorage.setItem("lastTimeFirstClick", currentTime);
+    localStorage.setItem("todayClicks", 1);
+    localStorage.setItem("numDays", ++numDays);
 
     if (diffDays == 1)
-      localStorage.setItem('streakDays', ++streakDays);
+      localStorage.setItem("streakDays", ++streakDays);
     else
-      localStorage.setItem('streakDays', 1);
+      localStorage.setItem("streakDays", 1);
   }
 
-  localStorage.setItem('totalClicks', totalClicks);
+  localStorage.setItem("totalClicks", totalClicks);
 
 //--- Start Trophy
   if (totalClicks == 33)
-    localStorage.setItem('_badge1', true);
+    localStorage.setItem("_badge1", true);
   else if (totalClicks == 1000)
-    localStorage.setItem('_badge2', true);
+    localStorage.setItem("_badge2", true);
   else if (totalClicks == 10000)
-    localStorage.setItem('_badge8', true);
+    localStorage.setItem("_badge8", true);
 
   if (todayClicks == 1000)
-    localStorage.setItem('_badge3', true);
+    localStorage.setItem("_badge3", true);
 
   if (streakDays == 3)
-    localStorage.setItem('_badge4', true);
+    localStorage.setItem("_badge4", true);
   else if (streakDays == 7)
-    localStorage.setItem('_badge5', true);
+    localStorage.setItem("_badge5", true);
   else if (streakDays == 30)
-    localStorage.setItem('_badge6', true);
+    localStorage.setItem("_badge6", true);
 
   if (numDays == 100)
-    localStorage.setItem('_badge7', true);
+    localStorage.setItem("_badge7", true);
 //--- End Trophy   
 }
 
 lastAccessTime();
 
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register('service-worker.js')
+    .register("service-worker.js")
     .then(function (sw) {
-      console.info('ServiceWorker registered: ', sw.scope);
+      console.info("ServiceWorker registered: ", sw.scope);
 
       var isUpdate = false;
       if (sw.active)
@@ -459,13 +459,13 @@ if ('serviceWorker' in navigator) {
 
       sw.onupdatefound = function(event) {
         sw.installing.onstatechange = function(event) {
-          if (this.state === 'installed') {
+          if (this.state === "installed") {
             console.info("Service Worker Installed.");
             if (isUpdate) {
               window.location.reload(false);
             }
             else {
-              console.info('Ready for offline use.');
+              console.info("Ready for offline use.");
             }
           }
           else {
