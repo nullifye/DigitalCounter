@@ -37,6 +37,11 @@ function formattedDisplayNum(num) {
 function countup() {
   plusone();
 
+  if (!isMute) {
+    const clickSound = new Audio("sound/click.ogg");
+          clickSound.play();
+  }
+
   const ctr = document.querySelector('.counter');
     let num = parseInt(ctr.innerText);
         num++;
@@ -291,6 +296,17 @@ document.querySelector("#minus").addEventListener('click', function(e) {
   minus();
 });
 
+document.querySelector("#sound").addEventListener('click', function(e) {
+  isMute = !isMute;
+
+  localStorage.setItem('isMute', isMute);
+
+  if (isMute)
+    document.querySelector('#sound').innerHTML = 'volume_off';
+  else
+    document.querySelector('#sound').innerHTML = 'volume_up';
+});
+
 document.querySelector("#save").addEventListener('click', function(e) {
   save();
 });
@@ -344,6 +360,12 @@ let hold = null;
 if (isDarkMode) {
   document.body.classList.add('dark');
   document.querySelector('#mode').innerHTML = 'light_mode';
+}
+
+let isMute = JSON.parse(localStorage.getItem('isMute'));
+
+if (isMute) {
+  document.querySelector('#sound').innerHTML = 'volume_off';
 }
 
 const badges = [

@@ -24,6 +24,7 @@ body {
   color: #000;
   overflow: hidden;
   padding: 20px;
+  margin: 0;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -133,7 +134,7 @@ button span {
   cursor: pointer;
 }
 
-#reset, #minus, #mode, #trophy, #records, #save {
+#reset, #minus, #mode, #trophy, #records, #sound, #save {
   font-size: 2rem;
   cursor: pointer;
 }
@@ -145,6 +146,12 @@ button span {
 #save {
   position: absolute;
   right: 20px;
+  bottom: 20px;
+}
+
+#sound {
+  position: absolute;
+  left: 20px;
   bottom: 20px;
 }
 

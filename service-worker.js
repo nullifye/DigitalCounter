@@ -14,6 +14,7 @@ var filesToCache = [
   "img/ms-icon-70x70.png",
   "img/ms-icon-150x150.png",
   "img/ms-icon-310x310.png",
+  "sound/click.ogg",
   "https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap",
   "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 ];
