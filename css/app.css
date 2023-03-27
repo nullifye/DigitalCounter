@@ -29,6 +29,15 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.version {
+  font-family: 'Share Tech Mono', sans-serif;
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 88px;
+  left: 36px;
+  transform-origin: bottom left;
+}
+
 .counter {
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 23vw;
