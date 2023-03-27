@@ -1,3 +1,12 @@
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 body.dark {
   background-color: #333;
   color: #fff;
@@ -25,8 +34,6 @@ body {
   overflow: hidden;
   padding: 20px;
   margin: 0;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .version {
@@ -172,6 +179,7 @@ button span {
   position: absolute;
   left: 8vw;
   bottom: 10vh;
+  width: max-content;
 }
 
 #move {
