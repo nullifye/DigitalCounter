@@ -399,14 +399,12 @@ function analytics() {
     localStorage.setItem("lastTimeFirstClick", currentTime);
   }
 
-  const date1 = new Date(lastTimeFirstClick * 1000);
-  const date2 = new Date(currentTime * 1000);
+  const date1 = new Date(lastTimeFirstClick * 1000).setHours(0,0,0,0);
+  const date2 = new Date(currentTime * 1000).setHours(0,0,0,0);
 
-  const timeDiff = date2.getTime() - date1.getTime();
-  let   diffDays = date2.getUTCDate() - date1.getUTCDate();
+  const diffDays = (date2 - date1) / (24 * 60 * 60 * 1000);
 
-  if (diffDays === 0 && timeDiff < (24 * 60 * 60 * 1000)) {
-    diffDays = 0;
+  if (diffDays === 0) {
     localStorage.setItem("todayClicks", todayClicks);
   }
   else {
