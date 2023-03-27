@@ -38,7 +38,7 @@ function countup() {
   plusone();
 
   if (!isMute) {
-    const clickSound = new Audio("sound/click.ogg");
+    const clickSound = new Audio("sound/click.m4a");
           clickSound.play();
   }
 

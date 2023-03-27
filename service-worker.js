@@ -1,4 +1,4 @@
-var revision = "00004";
+var revision = "00005";
 
 var cacheName = "digitalcounter";
 var filesToCache = [
@@ -14,7 +14,7 @@ var filesToCache = [
   "img/ms-icon-70x70.png",
   "img/ms-icon-150x150.png",
   "img/ms-icon-310x310.png",
-  "sound/click.ogg",
+  "sound/click.m4a",
   "https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap",
   "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 ];
