@@ -103,6 +103,12 @@
   <span id="trophy" class="material-icons-round">
     emoji_events
   </span>
+  <span class="notifyicon">
+    <span class="notifybadge"></span>
+    <span id="notify" class="material-icons-round">
+      sports_score
+    </span>
+  </span>
   <span id="minus" class="material-icons-round">
     exposure_neg_1
   </span>
@@ -115,7 +121,7 @@
 
   <span class="counter">00000</span>
 
-  <span class="version">Version 1.1.5</span>
+  <span class="version">Version 1.1.6</span>
 
   <span class="movinblock">
     <span id="move" class="material-icons-round">
@@ -127,6 +133,19 @@
         touch_app
       </span>
     </button>
+  </span>
+
+  <span class="modal notifyat">
+    <span>
+      Notify at every X steps
+      <span id="btnnotifyatclose" class="material-icons-round">
+        cancel
+      </span>
+    </span>
+
+    <input type="number" name="notifyat" id="notifyat" inputmode="decimal" min="0" step="1">
+
+    <span id="btnnotifyat">set</span>
   </span>
 
   <span class="modal saveas">

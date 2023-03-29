@@ -14,17 +14,16 @@ body.dark {
 body.dark .counter {
   color: #fff;
 }
-body.dark button#keypad::before {
+body.dark button#keypad::before,
+body.dark .modal.saveas::before,
+body.dark .modal.records::before,
+body.dark .modal.trophy::before,
+body.dark .modal.notifyat::before {
   box-shadow: 0 0 0 2px #b18597
 }
-body.dark .modal.saveas::before {
-  box-shadow: 0 0 0 2px #b18597
-}
-body.dark .modal.records::before {
-  box-shadow: 0 0 0 2px #b18597
-}
-body.dark .modal.trophy::before {
-  box-shadow: 0 0 0 2px #b18597
+body.dark .notifyicon .notifybadge {
+  background-color: #fff;
+  color: #333;
 }
 
 
@@ -150,7 +149,7 @@ button span {
   cursor: pointer;
 }
 
-#reset, #minus, #mode, #trophy, #records, #sound, #save {
+#reset, #minus, #mode, #trophy, #records, #notify, #sound, #save {
   font-size: 2rem;
   cursor: pointer;
 }
@@ -159,15 +158,39 @@ button span {
   float: right;
 }
 
-#save {
+.notifyicon {
   position: absolute;
-  right: 20px;
+  left: 20px;
   bottom: 20px;
+  text-align: center;
+  padding-left: 68px;
+}
+
+.notifybadge {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.7em;
+  color: #fff;
+  background-color: black;
+  padding: 6px;
+  border-radius: 10px;
+  display: block;
+  min-width: 23px;
+  display: none;
+}
+
+#notify {
+  display: flex;
 }
 
 #sound {
   position: absolute;
   left: 20px;
+  bottom: 20px;
+}
+
+#save {
+  position: absolute;
+  right: 20px;
   bottom: 20px;
 }
 
@@ -235,6 +258,50 @@ button span {
   transform: translate3d(0, 0.75em, -1em);
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
   z-index: -1;
+}
+
+.modal.notifyat {
+  display: none;
+  width: 67vw;
+  max-width: 220px;
+  min-height: 100px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.modal.notifyat #btnnotifyat {
+  margin: 15px 0 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.modal.notifyat #btnnotifyatclose {
+  position: absolute;
+  right: 0.2em;
+  top: 0.2em;
+  color: #9b5a6b;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal.notifyat input {
+  margin-top: 7px;
+  border: 2px solid #b18597;
+  border-radius: 0.75em;
+  padding: 10px 8px;
+  font-family: inherit;
+  font-size: 1.1em;
+  text-align: center;
+
+  -moz-appearance: textfield;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.modal.notifyat input::-webkit-outer-spin-button,
+.modal.notifyat input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .modal.saveas {

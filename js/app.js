@@ -34,11 +34,13 @@ function formattedDisplayNum(num) {
   return formattedNum;
 }
 
+const dingSound = new Audio("sound/ding.mp3");
+
 function countup() {
   plusone();
 
   if (!isMute) {
-    const clickSound = new Audio("sound/click.m4a");
+    const clickSound = new Audio("sound/click.mp3");
           clickSound.play();
   }
 
@@ -48,14 +50,17 @@ function countup() {
 
   ctr.innerHTML = formattedDisplayNum(num); 
 
-  if (Number.isInteger(num / 33)) {
+  if (Number.isInteger(num / notifyAt)) {
     try {
-      navigator.vibrate(500);
-      console.log("33");
+      navigator.vibrate([500]);
+      console.log("=> " + notifyAt);
     }
-    catch(e) {
+    catch (e) {
       console.log("iOS?");
     }
+
+    if (!isMute)
+      dingSound.play();
   }
 
   analytics();
@@ -174,6 +179,13 @@ function updateRecordIfLoaded(ctr) {
 
     localStorage.setItem("records", JSON.stringify(rec));
   }
+}
+
+function notify() {
+  const notifyat = document.querySelector(".notifyat");
+
+  notifyat.querySelector("#notifyat").value = parseInt(localStorage.getItem("notifyAt")) || 0;
+  notifyat.style.display = "flex";
 }
 
 function save() {
@@ -308,6 +320,10 @@ document.querySelector("#sound").addEventListener("click", function(e) {
     document.querySelector("#sound").innerHTML = "volume_up";
 });
 
+document.querySelector("#notify").addEventListener("click", function(e) {
+  notify();
+});
+
 document.querySelector("#save").addEventListener("click", function(e) {
   save();
 });
@@ -316,10 +332,29 @@ document.querySelector("#keypad").addEventListener("click", function(e) {
   countup();
 });
 
-document.querySelector("#btnsaveas").addEventListener("click", function(e) {
-  const el = document.querySelector("#saveas");
+document.querySelector("#btnnotifyat").addEventListener("click", function(e) {
+  let el = document.querySelector("#notifyat").value.trim();
 
-  if (el.value.trim() != "") {
+  document.querySelector(".notifyat").style.display = "none";
+
+  if (el != "" && !isNaN(el) && parseInt(el) > 0) {
+    document.querySelector(".notifybadge").style.display = "block";
+  }
+  else {
+    el = 0;
+    document.querySelector(".notifybadge").style.display = "none";
+  }
+
+  localStorage.setItem("notifyAt", parseInt(el));
+  document.querySelector(".notifybadge").innerHTML = parseInt(el);
+
+  notifyAt = el;
+});
+
+document.querySelector("#btnsaveas").addEventListener("click", function(e) {
+  const el = document.querySelector("#saveas").value.trim();
+
+  if (el != "") {
     document.querySelector(".saveas").style.display = "none";
 
     const id = parseInt(new Date().getTime() / 1000);
@@ -327,7 +362,7 @@ document.querySelector("#btnsaveas").addEventListener("click", function(e) {
 
     const data = {
       epoch: id,
-      title: el.value,
+      title: el,
       count: parseInt(cn.innerText)
     };
 
@@ -342,6 +377,10 @@ document.querySelector("#btnsaveas").addEventListener("click", function(e) {
 
     loadRecord(id);
   }
+});
+
+document.querySelector("#btnnotifyatclose").addEventListener("click", function(e) {
+  document.querySelector(".notifyat").style.display = "none";
 });
 
 document.querySelector("#btnsaveasclose").addEventListener("click", function(e) {
@@ -369,6 +408,18 @@ let isMute = JSON.parse(localStorage.getItem("isMute"));
 
 if (isMute) {
   document.querySelector("#sound").innerHTML = "volume_off";
+}
+
+let notifyAt = parseInt(localStorage.getItem("notifyAt"));
+
+if (isNaN(notifyAt)) {
+  notifyAt = 33;
+  localStorage.setItem("notifyAt", notifyAt);
+}
+
+if (notifyAt > 0) {
+  document.querySelector(".notifybadge").innerHTML = notifyAt;
+  document.querySelector(".notifybadge").style.display = "block";
 }
 
 const badges = [
