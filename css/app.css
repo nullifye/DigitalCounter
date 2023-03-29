@@ -200,8 +200,8 @@ button span {
 
 .movinblock {
   position: absolute;
-  left: 8vw;
-  bottom: 10vh;
+  right: 8vw;
+  bottom: 20vh;
   width: max-content;
 }
 
