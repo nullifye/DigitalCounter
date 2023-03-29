@@ -188,6 +188,69 @@ function notify() {
   notifyat.style.display = "flex";
 }
 
+let zikrcycle = -1;
+
+function zikr() {
+  const zikrs = [
+    {
+      arabic: "يَا اللهُ",
+      meaning: "O Allah"
+    },
+    {
+      arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
+      meaning: "There is no deity but Allah"
+    },
+    {
+      arabic: "يَاحَيُّ يَا قَيُّوْمُ",
+      meaning: "O Ever-Living, O Self-Sustaining and All-Sustaining!"
+    },
+    {
+      arabic: "لَا حَوْلَ وَلاَ قُوَّةَ اِلاَّ بِاللهِ اْلعَلِيِّ اْلعَظِيْمِ",
+      meaning: "There is no power nor strength except Allah; The Most High, The Supreme"
+    },
+    {
+      arabic: "اَللَّهُمَّ صَلَّى عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ وَصَحْبِهِ وَسَلَّمَ",
+      meaning: "May Allah bless Muhammad, his family and his companions"
+    },
+    {
+      arabic: "اَسْتَغْفِرُ اللهَ اْلعَظِيْمَ",
+      meaning: "I seek the forgiveness of God"
+    },
+    {
+      arabic: "سُبْحَانَ اللهَ اْلعَظِيْمَ وَبِحَمْدِهِ",
+      meaning: "Glory be to Allah and His is the praise"
+    },
+    {
+      arabic: "ٱللَّٰهُ أَكْبَرُ",
+      meaning: "Allah is Greater"
+    },
+    {
+      arabic: "سُبْحَانَ ٱللَّٰهِ",
+      meaning: "Glory to Allah"
+    },
+    {
+      arabic: "ٱلْحَمْدُ لِلَّٰهِ",
+      meaning: "Praise be to Allah"
+    }
+  ];
+
+  zikrcycle++;
+
+  if (zikrcycle == zikrs.length) {
+    zikrcycle = -1;
+    document.querySelector("#arabic").innerHTML  = "";
+    document.querySelector("#meaning").innerHTML = "";
+    document.querySelector(".zikrbadge").innerHTML = "";
+    document.querySelector(".zikrbadge").style.display = 'none';
+  }
+  else {
+    document.querySelector("#arabic").innerHTML  = zikrs[zikrcycle].arabic;
+    document.querySelector("#meaning").innerHTML = zikrs[zikrcycle].meaning;
+    document.querySelector(".zikrbadge").innerHTML = (zikrcycle + 1) + "/" + zikrs.length;
+    document.querySelector(".zikrbadge").style.display = 'block';
+  }
+}
+
 function save() {
   const saveas = document.querySelector(".saveas");
 
@@ -322,6 +385,10 @@ document.querySelector("#sound").addEventListener("click", function(e) {
 
 document.querySelector("#notify").addEventListener("click", function(e) {
   notify();
+});
+
+document.querySelector("#mosque").addEventListener("click", function(e) {
+  zikr();
 });
 
 document.querySelector("#save").addEventListener("click", function(e) {

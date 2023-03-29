@@ -21,7 +21,8 @@ body.dark .modal.trophy::before,
 body.dark .modal.notifyat::before {
   box-shadow: 0 0 0 2px #b18597
 }
-body.dark .notifyicon .notifybadge {
+body.dark .notifyicon .notifybadge,
+body.dark .zikricon .zikrbadge {
   background-color: #fff;
   color: #333;
 }
@@ -73,6 +74,19 @@ body {
 .counter span:not([data-num='0']) + span + span + span,
 .counter span:not([data-num='0']) + span + span + span + span {
   filter: opacity(1);
+}
+
+.zikr {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.zikr #arabic {
+  font-size: 2em;
+}
+
+.zikr #meaning {
+  font-size: 1.05em;
 }
 
 button {
@@ -149,7 +163,7 @@ button span {
   cursor: pointer;
 }
 
-#reset, #minus, #mode, #trophy, #records, #notify, #sound, #save {
+#reset, #minus, #mode, #trophy, #records, #notify, #mosque, #sound, #save {
   font-size: 2rem;
   cursor: pointer;
 }
@@ -158,28 +172,36 @@ button span {
   float: right;
 }
 
-.notifyicon {
+.notifyicon, .zikricon {
   position: absolute;
   left: 20px;
   bottom: 20px;
   text-align: center;
+  pointer-events: none;
+}
+
+.notifyicon {
   padding-left: 68px;
 }
 
-.notifybadge {
+.zikricon {
+  padding-left: 137px;
+}
+
+.notifybadge, .zikrbadge {
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 0.7em;
   color: #fff;
   background-color: black;
   padding: 6px;
   border-radius: 10px;
-  display: block;
   min-width: 23px;
   display: none;
 }
 
-#notify {
+#notify, #mosque {
   display: flex;
+  pointer-events: bounding-box;
 }
 
 #sound {
