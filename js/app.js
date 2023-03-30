@@ -213,7 +213,7 @@ function zikr() {
     },
     {
       arabic: "سُبْحَانَ اللهَ اْلعَظِيْمَ وَبِحَمْدِهِ",
-      meaning: "Glory be to Allah and His is the praise"
+      meaning: "Glory be to Allah, The Supreme, and Praise Him"
     },
     {
       arabic: "يَا اللهُ",
@@ -224,16 +224,32 @@ function zikr() {
       meaning: "There is no deity but Allah"
     },
     {
-      arabic: "ٱللَّٰهُ أَكْبَرُ",
-      meaning: "Allah is Greater"
-    },
-    {
       arabic: "سُبْحَانَ ٱللَّٰهِ",
       meaning: "Glory to Allah"
     },
     {
       arabic: "ٱلْحَمْدُ لِلَّٰهِ",
       meaning: "Praise be to Allah"
+    },
+    {
+      arabic: "ٱللَّٰهُ أَكْبَرُ",
+      meaning: "Allah is the Greatest"
+    },
+    {
+      arabic: "لاحَوْلَوَلاقُوَّةَاِلَّابِاللّهِ",
+      meaning: "There is no Might or Power except with Allah"
+    },
+    {
+      arabic: "سُبْحَانَاللّهِ، والْحَمْدُللّهِ، وَلااِلهَاِلَّااللّهُ، وَاللّهُاَكْبَرُ",
+      meaning: "Glory be to Allah, All Praise is for Allah, There is No God but Allah, Allah is the Greatest"
+    },
+    {
+      arabic: "لااِلهَاِلَّااللّهُوَحْدَهُلاشَرِيكَلَهُ، لَهُالْمُلْكُوَلَهُالْحَمْدُ وَهُوَعَلَىكُلِّشَيْءٍقَدِيرٌ",
+      meaning: "There is No God But Allah Alone, who has no partner. His is the dominion and His is the raise, and He is Able to do all things"
+    },
+    {
+      arabic: "أَسْتَغْفِرُاللَّهَالْعَظِيمَا لَّذِيلاَإِلَهَإِ لاَّهُوَالْحَيُّالْْقَيُّومُوَأَتُوبُإِلَيْهِ",
+      meaning: "I seek the forgiveness of Allah the Mighty, Whom there is none worthy except Him, the Living, The Eternal, and I repent unto Him"
     }
   ];
 
@@ -409,6 +425,9 @@ document.querySelector("#btnnotifyat").addEventListener("click", function(e) {
 
   if (el != "" && !isNaN(el) && parseInt(el) > 0) {
     document.querySelector(".notifybadge").style.display = "block";
+
+    if (parseInt(el) > 99999)
+      el = 99999;
   }
   else {
     el = 0;

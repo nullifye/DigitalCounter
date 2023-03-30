@@ -195,8 +195,10 @@ button span {
   background-color: black;
   padding: 6px;
   border-radius: 10px;
-  min-width: 23px;
+  min-width: 30px;
   display: none;
+  position: relative;
+  left: -6px;
 }
 
 #notify, #mosque {
