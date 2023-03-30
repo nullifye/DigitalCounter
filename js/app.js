@@ -86,6 +86,7 @@ function reset() {
 
   hold = null;
 
+  document.querySelector("#records").innerHTML = "bookmark_border";
   document.querySelector("#save").style.display = "unset";
 }
 
@@ -156,9 +157,9 @@ function loadRecord(id) {
 
   ctr.innerHTML = formattedDisplayNum(hold.ctr);
 
+  document.querySelector("#records").innerHTML = "bookmark";
   document.querySelector(".records").style.display = "none";
   document.querySelector("#save").style.display = "none";
-  
 }
 
 function removeRecord(id) {
@@ -193,14 +194,6 @@ let zikrcycle = -1;
 function zikr() {
   const zikrs = [
     {
-      arabic: "يَا اللهُ",
-      meaning: "O Allah"
-    },
-    {
-      arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
-      meaning: "There is no deity but Allah"
-    },
-    {
       arabic: "يَاحَيُّ يَا قَيُّوْمُ",
       meaning: "O Ever-Living, O Self-Sustaining and All-Sustaining!"
     },
@@ -219,6 +212,14 @@ function zikr() {
     {
       arabic: "سُبْحَانَ اللهَ اْلعَظِيْمَ وَبِحَمْدِهِ",
       meaning: "Glory be to Allah and His is the praise"
+    },
+    {
+      arabic: "يَا اللهُ",
+      meaning: "O Allah"
+    },
+    {
+      arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
+      meaning: "There is no deity but Allah"
     },
     {
       arabic: "ٱللَّٰهُ أَكْبَرُ",
