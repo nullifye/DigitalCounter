@@ -170,6 +170,8 @@ function removeRecord(id) {
         rec = rec.filter((item) => item.epoch != id);
 
   localStorage.setItem("records", JSON.stringify(rec));
+
+  reset();
 }
 
 function updateRecordIfLoaded(ctr) {
