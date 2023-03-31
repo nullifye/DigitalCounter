@@ -26,6 +26,9 @@ body.dark .zikricon .zikrbadge {
   background-color: #fff;
   color: #333;
 }
+body.dark .zikr {
+  background-color: #333;
+}
 
 
 body {
@@ -78,7 +81,10 @@ body {
 
 .zikr {
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 9vh;
+  padding-bottom: 1vh;
+  position: relative;
+  background-color: #fff;
 }
 
 .zikr #arabic {

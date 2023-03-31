@@ -250,6 +250,10 @@ function zikr() {
     {
       arabic: "أَسْتَغْفِرُاللَّهَالْعَظِيمَا لَّذِيلاَإِلَهَإِ لاَّهُوَالْحَيُّالْْقَيُّومُوَأَتُوبُإِلَيْهِ",
       meaning: "I seek the forgiveness of Allah the Mighty, Whom there is none worthy except Him, the Living, The Eternal, and I repent unto Him"
+    },
+    {
+      arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
+      meaning: "There is no deity but Allah, Muhammad is the Messenger of God."
     }
   ];
 
