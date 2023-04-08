@@ -601,10 +601,18 @@ function analytics() {
 
 lastAccessTime();
 
+if ("Notification" in window) {
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      //
+    }
+  });
+}
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("service-worker.js")
-    .then(function (sw) {
+    .then(function(sw) {
       console.info("ServiceWorker registered: ", sw.scope);
 
       var isUpdate = false;
@@ -628,4 +636,17 @@ if ("serviceWorker" in navigator) {
         };
       };
     });
+
+  navigator.serviceWorker.ready.then(async function(registration) {
+    if ('periodicSync' in registration) {
+      try {
+        await registration.periodicSync.register('aZikraDay', {
+          minInterval: 24 * 60 * 60 * 1000,
+        });
+      }
+      catch (e) {
+        console.log("Periodic background sync cannot be used.");
+      }
+    }
+  });
 }

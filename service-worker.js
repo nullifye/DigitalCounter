@@ -5,6 +5,7 @@ var filesToCache = [
   "index.html",
   "js/app.js",
   "css/app.css",
+  "img/badge.png",
   "img/android-icon-48x48.png",
   "img/android-icon-72x72.png",
   "img/android-icon-96x96.png",
@@ -39,6 +40,39 @@ self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request);
+    })
+  );
+});
+
+function scheduleNotification() {
+  return self.registration.showNotification('A Zikr A Day', {
+    body   : 'Have you recited zikr today?',
+    icon   : 'img/badge.png',
+    badge  : 'img/badge.png',
+    vibrate: [100, 50, 100]
+  });
+}
+
+self.addEventListener('periodicsync', function(event) {
+  if (event.tag === 'aZikraDay') {
+    event.waitUntil(scheduleNotification());
+  }
+});
+
+self.addEventListener('notificationclick', function(event) {
+  const rootUrl = new URL('./', location).href; 
+  const     pwa = rootUrl + "index.html?utm_source=standalone&utm_medium=pwa";
+  event.notification.close();
+
+  event.waitUntil(
+    clients.matchAll().then(function(matchedClients) {
+      for (let client of matchedClients) {
+        if (client.url == pwa) {
+          return client.focus();
+        }
+      }
+
+      return clients.openWindow(pwa);
     })
   );
 });
