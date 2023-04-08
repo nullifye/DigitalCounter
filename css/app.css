@@ -1,3 +1,7 @@
+:root {
+  --main-bg-color: #fff;
+}
+
 * {
   user-select: none;
   -webkit-user-select: none;
@@ -8,7 +12,8 @@
 }
 
 body.dark {
-  background-color: #333;
+  --main-bg-color: #333;
+  background-color: var(--main-bg-color);
   color: #fff;
 }
 body.dark .counter {
@@ -24,10 +29,10 @@ body.dark .modal.notifyat::before {
 body.dark .notifyicon .notifybadge,
 body.dark .zikricon .zikrbadge {
   background-color: #fff;
-  color: #333;
+  color: var(--main-bg-color);
 }
 body.dark .zikr {
-  background-color: #333;
+  background-color: var(--main-bg-color);
 }
 
 

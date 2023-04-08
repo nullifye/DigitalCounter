@@ -319,12 +319,14 @@ function changemode() {
     document.body.classList.remove("dark");
     document.querySelector("#mode").innerHTML = "dark_mode";
 
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff');
     localStorage.setItem("isDarkMode", false);
   }
   else {
     document.body.classList.add("dark");
     document.querySelector("#mode").innerHTML = "light_mode";
 
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#333');
     localStorage.setItem("isDarkMode", true);
   }
 }
@@ -507,6 +509,8 @@ let hold = null;
 if (isDarkMode) {
   document.body.classList.add("dark");
   document.querySelector("#mode").innerHTML = "light_mode";
+
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#333');
 }
 
 let isMute = JSON.parse(localStorage.getItem("isMute"));
