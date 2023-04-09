@@ -199,6 +199,19 @@ button span {
   padding-left: 137px;
 }
 
+.trophybadge {
+  display: none;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: relative;
+  left: -20px;
+  bottom: -1px;
+  pointer-events: none;
+}
+
 .notifybadge, .zikrbadge {
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 0.7em;

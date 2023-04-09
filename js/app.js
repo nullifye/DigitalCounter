@@ -34,7 +34,34 @@ function formattedDisplayNum(num) {
   return formattedNum;
 }
 
+function showBadge() {
+  document.querySelector(".trophybadge").style.display = "inline-block";
+
+  try {
+    navigator.setAppBadge(1).then(function() {
+      console.log("The badge was added");
+    });
+  }
+  catch (e) {
+    console.log("The App Badging API is not supported!");
+  }
+}
+
+function hideBadge() {
+  document.querySelector(".trophybadge").style.display = "none";
+
+  try {
+    navigator.clearAppBadge().then(function() {
+      console.log("The badge was removed");
+    });
+  }
+  catch (e) {
+    console.log("The App Badging API is not supported!");
+  }
+}
+
 const dingSound = new Audio("sound/ding.mp3");
+const  tempload = new Audio("sound/click.mp3");
 
 function countup() {
   plusone();
@@ -48,7 +75,7 @@ function countup() {
     let num = parseInt(ctr.innerText);
         num++;
 
-  ctr.innerHTML = formattedDisplayNum(num); 
+  ctr.innerHTML = formattedDisplayNum(num);
 
   if (Number.isInteger(num / notifyAt)) {
     try {
@@ -500,6 +527,7 @@ document.querySelector("#btnrecordsclose").addEventListener("click", function(e)
 
 document.querySelector("#btntrophyclose").addEventListener("click", function(e) {
   document.querySelector(".trophy").style.display = "none";
+  hideBadge();
 });
 
 
@@ -600,6 +628,12 @@ function analytics() {
 
   if (numDays == 100)
     localStorage.setItem("_badge7", true);
+
+  if (totalClicks == 33 || totalClicks == 1000 || totalClicks == 10000 ||
+      todayClicks == 1000 ||
+      streakDays == 3 || streakDays == 7 || streakDays == 30 ||
+      numDays == 100)
+    showBadge();
 //--- End Trophy   
 }
 
