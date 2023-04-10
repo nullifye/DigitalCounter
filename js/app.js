@@ -1,16 +1,17 @@
 const clickedAnimations = document.getElementById("clicked-animations");
 
-function plusone() {
+function createClickedAnimation() {
   const clickedAnimation = document.createElement("div");
         clickedAnimation.classList.add("clicked-animation");
         clickedAnimation.textContent = hold ? hold.cap : "+1";
-        clickedAnimations.appendChild(clickedAnimation);
 
   const positionX = Math.floor(Math.random() * window.innerWidth) || 0;
   const positionY = Math.floor(Math.random() * window.innerHeight) || 0;
 
   clickedAnimation.style.left = positionX + "px";
   clickedAnimation.style.top  = positionY + "px";
+
+  clickedAnimations.appendChild(clickedAnimation);
 
   setTimeout(function() {
     clickedAnimation.style.opacity = "0.6";
@@ -37,34 +38,24 @@ function formattedDisplayNum(num) {
 function showBadge() {
   document.querySelector(".trophybadge").style.display = "inline-block";
 
-  try {
-    navigator.setAppBadge(1).then(function() {
-      console.log("The badge was added");
-    });
-  }
-  catch (e) {
-    console.log("The App Badging API is not supported!");
-  }
+  navigator.setAppBadge(1).catch(function(error) {
+    console.error("Error displaying the badge", error);
+  });
 }
 
 function hideBadge() {
   document.querySelector(".trophybadge").style.display = "none";
 
-  try {
-    navigator.clearAppBadge().then(function() {
-      console.log("The badge was removed");
-    });
-  }
-  catch (e) {
-    console.log("The App Badging API is not supported!");
-  }
+  navigator.clearAppBadge().catch(function(error) {
+    console.error("Error clearing the badge", error);
+  });
 }
 
 const dingSound = new Audio("sound/ding.mp3");
 const  tempload = new Audio("sound/click.mp3");
 
-function countup() {
-  plusone();
+function countUp() {
+  createClickedAnimation();
 
   if (!isMute) {
     const clickSound = new Audio("sound/click.mp3");
@@ -82,7 +73,7 @@ function countup() {
       navigator.vibrate([500]);
       console.log("=> " + notifyAt);
     }
-    catch (e) {
+    catch (error) {
       console.log("iOS?");
     }
 
@@ -98,12 +89,13 @@ function minus() {
   const ctr = document.querySelector(".counter");
     let num = parseInt(ctr.innerText);
 
-  if (num > 0)
+  if (num > 0) {
     num--;
 
-  ctr.innerHTML = formattedDisplayNum(num);
+    ctr.innerHTML = formattedDisplayNum(num);
 
-  updateRecordIfLoaded(num);
+    updateRecordIfLoaded(num);
+  }
 }
 
 function reset() {
@@ -121,7 +113,7 @@ function reset() {
 }
 
 function records() {
-  const records      = document.querySelector(".records");
+  const      records = document.querySelector(".records");
   const recordstable = document.querySelector(".recordstable");
 
   let rec = JSON.parse(localStorage.getItem("records"));
@@ -129,7 +121,7 @@ function records() {
   recordstable.innerHTML = "";
 
   if (rec) {
-    rec = rec.sort((a, b) => {
+    rec = rec.sort(function(a, b) {
       return b.epoch - a.epoch;
     });
 
@@ -224,68 +216,52 @@ function notify() {
   notifyat.style.display = "flex";
 }
 
-const zikrs = [
-  {
-    arabic: "يَاحَيُّ يَا قَيُّوْمُ",
-    meaning: "O Ever-Living, O Self-Sustaining and All-Sustaining!"
-  },
-  {
-    arabic: "لَا حَوْلَ وَلاَ قُوَّةَ اِلاَّ بِاللهِ اْلعَلِيِّ اْلعَظِيْمِ",
-    meaning: "There is no power nor strength except Allah; The Most High, The Supreme"
-  },
-  {
-    arabic: "اَللَّهُمَّ صَلَّى عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ وَصَحْبِهِ وَسَلَّمَ",
-    meaning: "May Allah bless Muhammad, his family and his companions"
-  },
-  {
-    arabic: "اَسْتَغْفِرُ اللهَ اْلعَظِيْمَ",
-    meaning: "I seek the forgiveness of God"
-  },
-  {
-    arabic: "سُبْحَانَ اللهَ اْلعَظِيْمَ وَبِحَمْدِهِ",
-    meaning: "Glory be to Allah, The Supreme, and Praise Him"
-  },
-  {
-    arabic: "يَا اللهُ",
-    meaning: "O Allah"
-  },
-  {
-    arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
-    meaning: "There is no deity but Allah"
-  },
-  {
-    arabic: "سُبْحَانَ ٱللَّٰهِ",
-    meaning: "Glory to Allah"
-  },
-  {
-    arabic: "ٱلْحَمْدُ لِلَّٰهِ",
-    meaning: "Praise be to Allah"
-  },
-  {
-    arabic: "ٱللَّٰهُ أَكْبَرُ",
-    meaning: "Allah is the Greatest"
-  },
-  {
-    arabic: "لاحَوْلَوَلاقُوَّةَاِلَّابِاللّهِ",
-    meaning: "There is no Might or Power except with Allah"
-  },
-  {
-    arabic: "سُبْحَانَاللّهِ، والْحَمْدُللّهِ، وَلااِلهَاِلَّااللّهُ، وَاللّهُاَكْبَرُ",
-    meaning: "Glory be to Allah, All Praise is for Allah, There is No God but Allah, Allah is the Greatest"
-  },
-  {
-    arabic: "لااِلهَاِلَّااللّهُوَحْدَهُلاشَرِيكَلَهُ، لَهُالْمُلْكُوَلَهُالْحَمْدُ وَهُوَعَلَىكُلِّشَيْءٍقَدِيرٌ",
-    meaning: "There is No God But Allah Alone, who has no partner. His is the dominion and His is the raise, and He is Able to do all things"
-  },
-  {
-    arabic: "أَسْتَغْفِرُاللَّهَالْعَظِيمَا لَّذِيلاَإِلَهَإِ لاَّهُوَالْحَيُّالْْقَيُّومُوَأَتُوبُإِلَيْهِ",
-    meaning: "I seek the forgiveness of Allah the Mighty, Whom there is none worthy except Him, the Living, The Eternal, and I repent unto Him"
-  },
-  {
-    arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
-    meaning: "There is no deity but Allah, Muhammad is the Messenger of God."
-  }
-];
+const zikrs = [{
+  arabic: "يَاحَيُّ يَا قَيُّوْمُ",
+  meaning: "O Ever-Living, O Self-Sustaining and All-Sustaining!"
+}, {
+  arabic: "لَا حَوْلَ وَلاَ قُوَّةَ اِلاَّ بِاللهِ اْلعَلِيِّ اْلعَظِيْمِ",
+  meaning: "There is no power nor strength except Allah; The Most High, The Supreme"
+}, {
+  arabic: "اَللَّهُمَّ صَلَّى عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ وَصَحْبِهِ وَسَلَّمَ",
+  meaning: "May Allah bless Muhammad, his family and his companions"
+}, {
+  arabic: "اَسْتَغْفِرُ اللهَ اْلعَظِيْمَ",
+  meaning: "I seek the forgiveness of God"
+}, {
+  arabic: "سُبْحَانَ اللهَ اْلعَظِيْمَ وَبِحَمْدِهِ",
+  meaning: "Glory be to Allah, The Supreme, and Praise Him"
+}, {
+  arabic: "يَا اللهُ",
+  meaning: "O Allah"
+}, {
+  arabic: "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
+  meaning: "There is no deity but Allah"
+}, {
+  arabic: "سُبْحَانَ ٱللَّٰهِ",
+  meaning: "Glory to Allah"
+}, {
+  arabic: "ٱلْحَمْدُ لِلَّٰهِ",
+  meaning: "Praise be to Allah"
+}, {
+  arabic: "ٱللَّٰهُ أَكْبَرُ",
+  meaning: "Allah is the Greatest"
+}, {
+  arabic: "لاحَوْلَوَلاقُوَّةَاِلَّابِاللّهِ",
+  meaning: "There is no Might or Power except with Allah"
+}, {
+  arabic: "سُبْحَانَاللّهِ، والْحَمْدُللّهِ، وَلااِلهَاِلَّااللّهُ، وَاللّهُاَكْبَرُ",
+  meaning: "Glory be to Allah, All Praise is for Allah, There is No God but Allah, Allah is the Greatest"
+}, {
+  arabic: "لااِلهَاِلَّااللّهُوَحْدَهُلاشَرِيكَلَهُ، لَهُالْمُلْكُوَلَهُالْحَمْدُ وَهُوَعَلَىكُلِّشَيْءٍقَدِيرٌ",
+  meaning: "There is No God But Allah Alone, who has no partner. His is the dominion and His is the raise, and He is Able to do all things"
+}, {
+  arabic: "أَسْتَغْفِرُاللَّهَالْعَظِيمَا لَّذِيلاَإِلَهَإِ لاَّهُوَالْحَيُّالْْقَيُّومُوَأَتُوبُإِلَيْهِ",
+  meaning: "I seek the forgiveness of Allah the Mighty, Whom there is none worthy except Him, the Living, The Eternal, and I repent unto Him"
+}, {
+  arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
+  meaning: "There is no deity but Allah, Muhammad is the Messenger of God."
+}];
 
 let zikrcycle = -1;
 
@@ -318,7 +294,7 @@ function save() {
 }
 
 function trophy() {
-  const trophy   = document.querySelector(".trophy");
+  const   trophy = document.querySelector(".trophy");
   const trophies = document.querySelector(".trophies");
 
   trophies.innerHTML = "";
@@ -341,7 +317,7 @@ function trophy() {
   trophy.style.display = "flex";
 }
 
-function changemode() {
+function changeMode() {
   if (document.body.classList.contains("dark")) {
     document.body.classList.remove("dark");
     document.querySelector("#mode").innerHTML = "dark_mode";
@@ -364,76 +340,80 @@ let       isDown = false;
 let       offset = [0,0];
 
 //desktop
-triggerEl.addEventListener("mousedown", function(e) {
+triggerEl.addEventListener("mousedown", function(event) {
   isDown = true;
+
   offset = [
-    divOverlay.offsetLeft - e.clientX,
-    divOverlay.offsetTop - e.clientY
+    divOverlay.offsetLeft - event.clientX,
+    divOverlay.offsetTop - event.clientY
   ];
 
   triggerEl.style.cursor = "grabbing";
 }, true);
 
-document.addEventListener("mouseup", function() {
+document.addEventListener("mouseup", function(event) {
   isDown = false;
+
   triggerEl.style.cursor = "grab";
 }, true);
 
-document.addEventListener("mousemove", function(e) {
+document.addEventListener("mousemove", function(event) {
   if (isDown) {
-    e.preventDefault();
-    divOverlay.style.left    = (e.clientX + offset[0]) + "px";
-    divOverlay.style.top     = (e.clientY + offset[1]) + "px";
-    divOverlay.style.bottom  = (e.clientY + offset[1]) + "px";
+    event.preventDefault();
+    divOverlay.style.left    = (event.clientX + offset[0]) + "px";
+    divOverlay.style.top     = (event.clientY + offset[1]) + "px";
+    divOverlay.style.bottom  = (event.clientY + offset[1]) + "px";
   }
 }, true);
 
 //mobile
-triggerEl.addEventListener("touchstart", function(e) {
+triggerEl.addEventListener("touchstart", function(event) {
   isDown = true;
+
   offset = [
-    divOverlay.offsetLeft - e.touches[0].clientX,
-    divOverlay.offsetTop - e.touches[0].clientY
+    divOverlay.offsetLeft - event.touches[0].clientX,
+    divOverlay.offsetTop - event.touches[0].clientY
   ];
 
   triggerEl.style.cursor = "grabbing";
 });
 
-document.addEventListener("touchend", function() {
+document.addEventListener("touchend", function(event) {
   isDown = false;
+
   triggerEl.style.cursor = "grab";
 });
 
-document.addEventListener("touchmove", function(e) {
+document.addEventListener("touchmove", function(event) {
   if (isDown) {
-    divOverlay.style.left    = (e.touches[0].clientX + offset[0]) + "px";
-    divOverlay.style.top     = (e.touches[0].clientY + offset[1]) + "px";
-    divOverlay.style.bottom  = (e.touches[0].clientY + offset[1]) + "px";
+    divOverlay.style.left    = (event.touches[0].clientX + offset[0]) + "px";
+    divOverlay.style.top     = (event.touches[0].clientY + offset[1]) + "px";
+    divOverlay.style.bottom  = (event.touches[0].clientY + offset[1]) + "px";
   }
 });
 
 
-document.querySelector("#reset").addEventListener("click", function(e) {
+document.querySelector("#reset").addEventListener("click", function(event) {
   reset();
 });
 
-document.querySelector("#mode").addEventListener("click", function(e) {
-  changemode();
+document.querySelector("#mode").addEventListener("click", function(event) {
+  changeMode();
 });
 
-document.querySelector("#records").addEventListener("click", function(e) {
+document.querySelector("#records").addEventListener("click", function(event) {
   records();
 });
 
-document.querySelector("#trophy").addEventListener("click", function(e) {
+document.querySelector("#trophy").addEventListener("click", function(event) {
   trophy();
 });
 
-document.querySelector("#minus").addEventListener("click", function(e) {
+document.querySelector("#minus").addEventListener("click", function(event) {
   minus();
 });
 
-document.querySelector("#sound").addEventListener("click", function(e) {
+document.querySelector("#sound").addEventListener("click", function(event) {
   isMute = !isMute;
 
   localStorage.setItem("isMute", isMute);
@@ -444,23 +424,23 @@ document.querySelector("#sound").addEventListener("click", function(e) {
     document.querySelector("#sound").innerHTML = "volume_up";
 });
 
-document.querySelector("#notify").addEventListener("click", function(e) {
+document.querySelector("#notify").addEventListener("click", function(event) {
   notify();
 });
 
-document.querySelector("#mosque").addEventListener("click", function(e) {
+document.querySelector("#mosque").addEventListener("click", function(event) {
   zikr();
 });
 
-document.querySelector("#save").addEventListener("click", function(e) {
+document.querySelector("#save").addEventListener("click", function(event) {
   save();
 });
 
-document.querySelector("#keypad").addEventListener("click", function(e) {
-  countup();
+document.querySelector("#keypad").addEventListener("click", function(event) {
+  countUp();
 });
 
-document.querySelector("#btnnotifyat").addEventListener("click", function(e) {
+document.querySelector("#btnnotifyat").addEventListener("click", function(event) {
   let el = document.querySelector("#notifyat").value.trim();
 
   document.querySelector(".notifyat").style.display = "none";
@@ -482,7 +462,7 @@ document.querySelector("#btnnotifyat").addEventListener("click", function(e) {
   notifyAt = el;
 });
 
-document.querySelector("#btnsaveas").addEventListener("click", function(e) {
+document.querySelector("#btnsaveas").addEventListener("click", function(event) {
   const el = document.querySelector("#saveas").value.trim();
 
   if (el != "") {
@@ -513,19 +493,19 @@ document.querySelector("#btnsaveas").addEventListener("click", function(e) {
   }
 });
 
-document.querySelector("#btnnotifyatclose").addEventListener("click", function(e) {
+document.querySelector("#btnnotifyatclose").addEventListener("click", function(event) {
   document.querySelector(".notifyat").style.display = "none";
 });
 
-document.querySelector("#btnsaveasclose").addEventListener("click", function(e) {
+document.querySelector("#btnsaveasclose").addEventListener("click", function(evente) {
   document.querySelector(".saveas").style.display = "none";
 });
 
-document.querySelector("#btnrecordsclose").addEventListener("click", function(e) {
+document.querySelector("#btnrecordsclose").addEventListener("click", function(event) {
   document.querySelector(".records").style.display = "none";
 });
 
-document.querySelector("#btntrophyclose").addEventListener("click", function(e) {
+document.querySelector("#btntrophyclose").addEventListener("click", function(event) {
   document.querySelector(".trophy").style.display = "none";
   hideBadge();
 });
@@ -640,7 +620,7 @@ function analytics() {
 lastAccessTime();
 
 if ("Notification" in window) {
-  Notification.requestPermission().then(permission => {
+  Notification.requestPermission().then(function(permission) {
     if (permission === "granted") {
       //
     }

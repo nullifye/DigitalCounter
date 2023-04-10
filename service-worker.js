@@ -1,4 +1,4 @@
-var revision = "00016";
+var revision = "00017";
 
 var cacheName = "digitalcounter";
 var filesToCache = [
@@ -21,17 +21,17 @@ var filesToCache = [
   "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
 ];
 
-self.addEventListener("install", function(e) {
+self.addEventListener("install", function(event) {
   self.skipWaiting();
 
-  e.waitUntil(
+  event.waitUntil(
     caches.open(cacheName).then(function(cache) {
       return cache.addAll(filesToCache);
     })
   );
 });
 
-self.addEventListener("activate", function(e) {
+self.addEventListener("activate", function(event) {
   return self.clients.claim();
 
 });

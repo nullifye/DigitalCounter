@@ -35,7 +35,6 @@ body.dark .zikr {
   background-color: var(--main-bg-color);
 }
 
-
 body {
   background-color: #fff;
   color: #000;
@@ -271,7 +270,6 @@ button span {
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
 }
-
 
 .modal {
   position: absolute;
