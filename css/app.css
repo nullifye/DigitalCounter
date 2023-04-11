@@ -34,6 +34,9 @@ body.dark .zikricon .zikrbadge {
 body.dark .zikr {
   background-color: var(--main-bg-color);
 }
+body.dark #modal-layer {
+  background: rgba(0, 0, 0, 0.19);
+}
 
 body {
   background-color: #fff;
@@ -269,6 +272,21 @@ button span {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
+}
+
+#modal-layer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.2px);
+  -webkit-backdrop-filter: blur(4.2px);
 }
 
 .modal {

@@ -146,6 +146,7 @@ function records() {
           sp4.innerText = "delete_forever";
 
       sp2.addEventListener("click", function() {
+        document.querySelector("#modal-layer").style.display = "none";
         loadRecord(this.dataset.key);
       });
 
@@ -402,10 +403,12 @@ document.querySelector("#mode").addEventListener("click", function(event) {
 });
 
 document.querySelector("#records").addEventListener("click", function(event) {
+  document.querySelector("#modal-layer").style.display = "block";
   records();
 });
 
 document.querySelector("#trophy").addEventListener("click", function(event) {
+  document.querySelector("#modal-layer").style.display = "block";
   trophy();
 });
 
@@ -425,6 +428,7 @@ document.querySelector("#sound").addEventListener("click", function(event) {
 });
 
 document.querySelector("#notify").addEventListener("click", function(event) {
+  document.querySelector("#modal-layer").style.display = "block";
   notify();
 });
 
@@ -433,6 +437,7 @@ document.querySelector("#mosque").addEventListener("click", function(event) {
 });
 
 document.querySelector("#save").addEventListener("click", function(event) {
+  document.querySelector("#modal-layer").style.display = "block";
   save();
 });
 
@@ -444,6 +449,7 @@ document.querySelector("#btnnotifyat").addEventListener("click", function(event)
   let el = document.querySelector("#notifyat").value.trim();
 
   document.querySelector(".notifyat").style.display = "none";
+  document.querySelector("#modal-layer").style.display = "none";
 
   if (el != "" && !isNaN(el) && parseInt(el) > 0) {
     document.querySelector(".notifybadge").style.display = "block";
@@ -467,6 +473,7 @@ document.querySelector("#btnsaveas").addEventListener("click", function(event) {
 
   if (el != "") {
     document.querySelector(".saveas").style.display = "none";
+    document.querySelector("#modal-layer").style.display = "none";
 
     const id = parseInt(new Date().getTime() / 1000);
     const cn = document.querySelector(".counter");
@@ -495,18 +502,22 @@ document.querySelector("#btnsaveas").addEventListener("click", function(event) {
 
 document.querySelector("#btnnotifyatclose").addEventListener("click", function(event) {
   document.querySelector(".notifyat").style.display = "none";
+  document.querySelector("#modal-layer").style.display = "none";
 });
 
 document.querySelector("#btnsaveasclose").addEventListener("click", function(evente) {
   document.querySelector(".saveas").style.display = "none";
+  document.querySelector("#modal-layer").style.display = "none";
 });
 
 document.querySelector("#btnrecordsclose").addEventListener("click", function(event) {
   document.querySelector(".records").style.display = "none";
+  document.querySelector("#modal-layer").style.display = "none";
 });
 
 document.querySelector("#btntrophyclose").addEventListener("click", function(event) {
   document.querySelector(".trophy").style.display = "none";
+  document.querySelector("#modal-layer").style.display = "none";
   hideBadge();
 });
 
