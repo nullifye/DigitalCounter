@@ -1,5 +1,7 @@
 :root {
   --main-bg-color: #fff;
+  --button_radius: 0.75rem;
+  --button_color: #fff0f0;
 }
 
 * {
@@ -19,11 +21,8 @@ body.dark {
 body.dark .counter {
   color: #fff;
 }
-body.dark button#keypad::before,
-body.dark .modal.saveas::before,
-body.dark .modal.records::before,
-body.dark .modal.trophy::before,
-body.dark .modal.notifyat::before {
+body.dark button#keypad,
+body.dark .modal {
   box-shadow: 0 0 0 2px #b18597
 }
 body.dark .notifyicon .notifybadge,
@@ -102,83 +101,79 @@ body {
   font-size: 1.05em;
 }
 
-button {
-  position: relative;
-  display: inline-block;
+button#keypad {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--button_radius);
+  background: #f9c4d2;
   cursor: pointer;
   outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  font-size: inherit;
-  font-family: inherit;
-
-  width: 34vw;
-  height: 16vh;  
-  max-width: 150px;
+  color: #9b5a6b;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
 }
 
-button#keypad {
-  font-weight: 600;
-  color: #382b22;
-  text-transform: uppercase;
-  padding: 1.25em 2em;
-  background: #fff0f0;
-  border: 2px solid #b18597;
-  border-radius: 0.75em;
-  transform-style: preserve-3d;
+button#keypad span {
+  position: relative;
+  outline: none;
+  text-decoration: none;
+  width: 33vw;
+  height: 15.5vh;
+  max-width: 150px;
+  font-size: 2rem !important;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  box-shadow: 0 0 0 2px #b18597;
+  color: #9b5a6b;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+   -webkit-transform: translateY(-0.4em);
+       -ms-transform: translateY(-0.4em);
+           transform: translateY(-0.4em);
+  -webkit-transition: -webkit-transform 0.1s ease;
+          transition: -webkit-transform 0.1s ease;
+          transition: transform 0.1s ease;
+          transition: transform 0.1s ease, -webkit-transform 0.1s ease;
+}
+
+button#keypad:active {
+  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
 }
 
-button#keypad::before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #f9c4d2;
-  border-radius: inherit;
-  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
-  transform: translate3d(0, 0.75em, -1em);
-  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+button#keypad:hover span {
+  background-color: #ffe9e9;
+
+  -webkit-transform: translateY(-0.33em);
+      -ms-transform: translateY(-0.33em);
+          transform: translateY(-0.33em);
 }
 
-button#keypad:hover {
-  background: #ffe9e9;
-  transform: translate(0, 0.25em);
-}
-
-button#keypad:hover::before {
-  box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
-  transform: translate3d(0, 0.5em, -1em);
-}
-
-button.keypad:active {
-  background: #ffe9e9;
-  transform: translate(0em, 0.75em); 
-}
-
-button#keypad:active::before {
-  box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
-  transform: translate3d(0, 0, -1em);
-}
-
-button#keypad:focus {
-  outline: none;
-}
-
-button span {
-  color: #9b5a6b;
-  font-size: 2rem !important;
-  cursor: pointer;
+button#keypad:active span {
+  background-color: #ffe9e9;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
 }
 
 #reset, #minus, #mode, #trophy, #records, #notify, #mosque, #sound, #save {
   font-size: 2rem;
   cursor: pointer;
+  z-index: 1;
+}
+
+.trophyicon, .notifyicon, .zikricon {
+  z-index: 1;
 }
 
 #minus {
@@ -253,11 +248,12 @@ button span {
   right: 8vw;
   bottom: 20vh;
   width: max-content;
+  z-index: 2;
 }
 
 #move {
   vertical-align: top;
-  padding-top: 10px;
+  padding-top: 0px;
   cursor: grab;
 }
 
@@ -281,6 +277,11 @@ button span {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
+
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
   background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
@@ -291,56 +292,51 @@ button span {
 
 .modal {
   position: absolute;
-  top: 45%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font-weight: 600;
   color: #382b22;
-  padding: 1.25em 2em;
-  background: #fff0f0;
-  border: 2px solid #b18597;
-  border-radius: 0.75em;
-  transform-style: preserve-3d;
-  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1); 
+  border: none;
+  border-radius: var(--button_radius);
+  background: #f9c4d2;
+  outline: none;
   font-family: 'Share Tech Mono', sans-serif;
+  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
 }
 
-.modal::before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #f9c4d2;
-  border-radius: inherit;
-  box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
-  transform: translate3d(0, 0.75em, -1em);
-  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-  z-index: -1;
+.modal span.modal-body {
+  display: flex;
+  border-radius: var(--button_radius);
+  padding: 1.25em 2em;
+  background: var(--button_color);
+  box-shadow: 0 0 0 2px #b18597;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translateY(-0.75em);
+  -ms-transform: translateY(-0.75em);
+  transform: translateY(-0.75em);
 }
 
 .modal.notifyat {
   display: none;
-  width: 67vw;
-  max-width: 220px;
+}
+
+.modal.notifyat span.modal-body {
+  width: 78vw;
+  max-width: 288px;
   min-height: 100px;
-  margin: 0 auto;
   flex-direction: column;
 }
 
-.modal.notifyat #btnnotifyat {
+.modal.notifyat span.modal-body #btnnotifyat {
   margin: 15px 0 0;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
 }
 
-.modal.notifyat #btnnotifyatclose {
+.modal.notifyat span.modal-body #btnnotifyatclose {
   position: absolute;
   right: 0.2em;
   top: 0.2em;
@@ -349,7 +345,7 @@ button span {
   cursor: pointer;
 }
 
-.modal.notifyat input {
+.modal.notifyat span.modal-body input {
   margin-top: 7px;
   border: 2px solid #b18597;
   border-radius: 0.75em;
@@ -362,29 +358,31 @@ button span {
 }
 
 /* Chrome, Safari, Edge, Opera */
-.modal.notifyat input::-webkit-outer-spin-button,
-.modal.notifyat input::-webkit-inner-spin-button {
+.modal.notifyat span.modal-body input::-webkit-outer-spin-button,
+.modal.notifyat span.modal-body input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 .modal.saveas {
   display: none;
-  width: 67vw;
+}
+
+.modal.saveas span.modal-body {
+  width: 77vw;
   max-width: 600px;
   min-height: 100px;
-  margin: 0 auto;
   flex-direction: column;
 }
 
-.modal.saveas #btnsaveas {
+.modal.saveas span.modal-body #btnsaveas {
   margin: 15px 0 0;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
 }
 
-.modal.saveas #btnsaveasclose {
+.modal.saveas span.modal-body #btnsaveasclose {
   position: absolute;
   right: 0.2em;
   top: 0.2em;
@@ -393,7 +391,7 @@ button span {
   cursor: pointer;
 }
 
-.modal.saveas input {
+.modal.saveas span.modal-body input {
   margin-top: 7px;
   border: 2px solid #b18597;
   border-radius: 0.75em;
@@ -404,21 +402,24 @@ button span {
 
 .modal.records {
   display: none;
-  width: 75vw;
+}
+
+.modal.records span.modal-body {
+  width: 86vw;
   max-width: 600px;
   min-height: 400px;
   margin: 0 auto;
   flex-direction: column;
 }
 
-.modal.records #btnrecordsclose {
+.modal.records span.modal-body #btnrecordsclose {
   margin: 15px 0 0;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
 }
 
-.modal.records .recordstable {
+.modal.records span.modal-body .recordstable {
   min-height: 328px;
   margin-top: 20px;
   display: flex;
@@ -428,13 +429,13 @@ button span {
   max-height: 70vh;
 }
 
-.modal.records .recordstable span {
+.modal.records span.modal-body .recordstable span {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.modal.records .recordstable > span > span:nth-child(1) {
+.modal.records span.modal-body .recordstable > span > span:nth-child(1) {
   flex: 3;
   font-size: 1.1em;
   height: 45px;
@@ -442,7 +443,7 @@ button span {
   justify-content: center;
 }
 
-.modal.records .recordstable > span > span:nth-child(2) {
+.modal.records span.modal-body .recordstable > span > span:nth-child(2) {
   flex: 7;
   flex-direction: column;
   justify-content: center;
@@ -452,13 +453,13 @@ button span {
   cursor: pointer;
 }
 
-.modal.records .recordstable > span > span:nth-child(2) > span {
+.modal.records span.modal-body .recordstable > span > span:nth-child(2) > span {
   font-size: 0.8em;
   opacity: 0.8;
   padding-top: 2px;
 }
 
-.modal.records .recordstable > span > span:nth-child(3) {
+.modal.records span.modal-body .recordstable > span > span:nth-child(3) {
   flex: 1;
   justify-content: end;
   align-items: center;
@@ -468,21 +469,24 @@ button span {
 
 .modal.trophy {
   display: none;
-  width: 75vw;
+}
+
+.modal.trophy span.modal-body {
+  width: 86vw;
   max-width: 560px;
   min-height: 400px;
   margin: 0 auto;
   flex-direction: column;
 }
 
-.modal.trophy #btntrophyclose {
+.modal.trophy span.modal-body #btntrophyclose {
   margin: 15px 0 0;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
 }
 
-.modal.trophy .trophies {
+.modal.trophy span.modal-body .trophies {
   min-height: 328px;
   margin-top: 20px;
   display: flex;
@@ -491,7 +495,7 @@ button span {
   justify-content: space-around;
 }
 
-.modal.trophy .trophies > span {
+.modal.trophy span.modal-body .trophies > span {
   flex-grow: 1;
   width: 33%;
   height: 100px;
@@ -502,19 +506,19 @@ button span {
   filter: blur(5px);
 }
 
-.modal.trophy .trophies > span.unlocked {
+.modal.trophy span.modal-body .trophies > span.unlocked {
   filter: blur(0px);
 }
 
-.modal.trophy .trophies span span:nth-child(1) {
+.modal.trophy span.modal-body .trophies span span:nth-child(1) {
   font-size: 3.5em;
 }
 
-.modal.trophy .trophies span span.caption {
+.modal.trophy span.modal-body .trophies span span.caption {
   flex: auto;
   filter: blur(5px);
 }
 
-.modal.trophy .trophies span.unlocked span.caption {
+.modal.trophy span.modal-body .trophies span.unlocked span.caption {
   filter: blur(0px);
 }

@@ -403,12 +403,12 @@ document.querySelector("#mode").addEventListener("click", function(event) {
 });
 
 document.querySelector("#records").addEventListener("click", function(event) {
-  document.querySelector("#modal-layer").style.display = "block";
+  document.querySelector("#modal-layer").style.display = "flex";
   records();
 });
 
 document.querySelector("#trophy").addEventListener("click", function(event) {
-  document.querySelector("#modal-layer").style.display = "block";
+  document.querySelector("#modal-layer").style.display = "flex";
   trophy();
 });
 
@@ -428,7 +428,7 @@ document.querySelector("#sound").addEventListener("click", function(event) {
 });
 
 document.querySelector("#notify").addEventListener("click", function(event) {
-  document.querySelector("#modal-layer").style.display = "block";
+  document.querySelector("#modal-layer").style.display = "flex";
   notify();
 });
 
@@ -437,7 +437,7 @@ document.querySelector("#mosque").addEventListener("click", function(event) {
 });
 
 document.querySelector("#save").addEventListener("click", function(event) {
-  document.querySelector("#modal-layer").style.display = "block";
+  document.querySelector("#modal-layer").style.display = "flex";
   save();
 });
 
