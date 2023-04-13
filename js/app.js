@@ -620,10 +620,7 @@ function analytics() {
   if (numDays == 100)
     localStorage.setItem("_badge7", true);
 
-  if (totalClicks == 33 || totalClicks == 1000 || totalClicks == 10000 ||
-      todayClicks == 1000 ||
-      streakDays == 3 || streakDays == 7 || streakDays == 30 ||
-      numDays == 100)
+  if (totalClicks == 33 || totalClicks == 1000 || totalClicks == 10000)
     showBadge();
 //--- End Trophy   
 }
