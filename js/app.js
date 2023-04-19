@@ -248,16 +248,16 @@ const zikrs = [{
   arabic: "ٱللَّٰهُ أَكْبَرُ",
   meaning: "Allah is the Greatest"
 }, {
-  arabic: "لاحَوْلَوَلاقُوَّةَاِلَّابِاللّهِ",
+  arabic: "لا حَوْلَ وَلا قُوَّة اِلَّا بِاللّهِ",
   meaning: "There is no Might or Power except with Allah"
 }, {
-  arabic: "سُبْحَانَاللّهِ، والْحَمْدُللّهِ، وَلااِلهَاِلَّااللّهُ، وَاللّهُاَكْبَرُ",
+  arabic: "سُبْحَانَ اللّهِ، والْحَمْدُ للّهِ، وَلا اِلهَ اِلَّا اللّهُ، وَاللّهُ اَكْبَرُ",
   meaning: "Glory be to Allah, All Praise is for Allah, There is No God but Allah, Allah is the Greatest"
 }, {
-  arabic: "لااِلهَاِلَّااللّهُوَحْدَهُلاشَرِيكَلَهُ، لَهُالْمُلْكُوَلَهُالْحَمْدُ وَهُوَعَلَىكُلِّشَيْءٍقَدِيرٌ",
+  arabic: "لااِلهَ اِلَّا اللّهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَعَلَى كُلِّ شَيْءٍ قَدِيرٌ",
   meaning: "There is No God But Allah Alone, who has no partner. His is the dominion and His is the raise, and He is Able to do all things"
 }, {
-  arabic: "أَسْتَغْفِرُاللَّهَالْعَظِيمَا لَّذِيلاَإِلَهَإِ لاَّهُوَالْحَيُّالْْقَيُّومُوَأَتُوبُإِلَيْهِ",
+  arabic: "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ الَّذِي لاَإِلَهَ إِلاَّ هُوَالْحَيُّ الْْقَيُّومُ وَأَتُوبُ إِلَيْهِ",
   meaning: "I seek the forgiveness of Allah the Mighty, Whom there is none worthy except Him, the Living, The Eternal, and I repent unto Him"
 }, {
   arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
