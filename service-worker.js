@@ -1,4 +1,4 @@
-var revision = "00023";
+var revision = "00024";
 
 var cacheName = "digitalcounter";
 var filesToCache = [
