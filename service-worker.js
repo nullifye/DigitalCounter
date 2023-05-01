@@ -37,8 +37,10 @@ self.addEventListener("activate", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
+  const cacheKey = event.request.url.split('?')[0];
+
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(cacheKey).then(function(response) {
       return response || fetch(event.request);
     })
   );
